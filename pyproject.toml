@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "clerks-friend"
+version = "1.0.0"
+description = "Useful reports for Ward Clerk's of The Church of Jesus Christ of Latter-Day Saints"
+authors = ["Isaac Wagner <14634+IsaacsLab42@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "clerks_friend", from = "src" }]
+repository = "https://github.com/IsaacsLab42/clerks_friend"
+homepage = "https://github.com/IsaacsLab42/clerks_friend"
+documentation = "https://clerks-friend.readthedocs.io/en/stable/"
+keywords = ["lcr", "churchofjesuschrist"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Religion",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Religion",
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/IsaacsLab42/clerks_friend/issues"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+lcr-session = "^1.0.1"
+requests = "^2.32.3"
+click = "^8.1.7"
+arrow = "^1.3.0"
+prettytable = "^3.10.2"
+
+[tool.poetry.group.dev.dependencies]
+ufmt = "^2.7.0"
+ipython = "^8.26.0"
+ipdb = "^0.13.13"
+mypy = "^1.11.1"
+tbump = "^6.11.0"
+types-requests = "^2.32.0.20240712"
+mkdocs = "^1.6.0"
+mkdocs-material = "^9.5.31"
+mkdocstrings = { extras = ["python"], version = "^0.25.2" }
+mkdocs-section-index = "^0.3.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
