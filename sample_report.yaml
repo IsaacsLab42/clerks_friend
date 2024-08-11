@@ -1,0 +1,23 @@
+---
+title: Super Man Ward Clerical Report
+
+reports:
+  - name: not_set_apart
+    heading: Not Set Apart
+
+  - name: expiring_recommends
+    heading: "Expiring/Expired Temple Recommends"
+    parameters:
+      months_past: -3
+      months_future: 1
+      recommend_type: REGULAR
+
+  - name: protecting_children_and_youth_training
+    heading: Protecting Children and Youth Training
+    parameters:
+      months_future: 1
+
+  - name: sacrament_meeting_attendance
+    heading: Sacrament Meeting Attendance
+    parameters:
+      year: 2024

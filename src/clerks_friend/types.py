@@ -1,20 +1,19 @@
-__all__ = ["RecommendType", "RecommendStatus"]
+__all__ = [
+    "CallingStatus",
+    "RecommendStatus",
+    "SacramentAttendance",
+    "YouthProtectionTraining",
+]
 
 from dataclasses import dataclass
-from enum import Enum
-
-import arrow
 
 
-class RecommendType(Enum):
-    """
-    Temple recommend type. When used as a filter all three options are valid. When used
-    in the RecommendStatus then only Regular or LimitedUse are valid.
-    """
-
-    Regular = 1
-    LimitedUse = 2
-    All = 3
+@dataclass
+class CallingStatus:
+    name: str
+    position: str
+    organization: str
+    sustained: str
 
 
 @dataclass
@@ -24,6 +23,19 @@ class RecommendStatus:
     """
 
     name: str
-    expiration_display: str
-    expiration_date: arrow.Arrow
-    recommend_type: RecommendType
+    expiration: str
+    recommend_type: str
+
+
+@dataclass
+class SacramentAttendance:
+    date: str
+    count: int
+
+
+@dataclass
+class YouthProtectionTraining:
+    name: str
+    position: str
+    organization: str
+    expiration: str
