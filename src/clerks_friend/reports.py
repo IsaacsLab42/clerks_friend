@@ -1,8 +1,8 @@
 __all__ = [
     "get_expiring_recommends",
     "get_not_set_apart",
-    "get_sacrament_meeting_attendance",
     "get_protecting_children_and_youth_training",
+    "get_sacrament_meeting_attendance",
 ]
 
 import arrow
@@ -14,28 +14,6 @@ from .types import (
     SacramentAttendance,
     YouthProtectionTraining,
 )
-
-
-def get_not_set_apart(lcr: LcrSession) -> list[CallingStatus]:
-    url = ChurchUrl(
-        "lcr", "api/report/members-with-callings?lang=eng&unitNumber={unit}"
-    )
-    members_with_callings = lcr.get_json(url)
-
-    not_set_apart = []
-    for member in members_with_callings:
-        # Only ward level callings
-        if member["outOfUnit"] or member["stake"]:
-            continue
-        if member["setApart"]:
-            continue
-        sustained = arrow.get(member["sustainedDate"]).format("YYYY-MM-DD")
-        not_set_apart.append(
-            CallingStatus(
-                member["name"], member["position"], member["organization"], sustained
-            )
-        )
-    return not_set_apart
 
 
 def get_expiring_recommends(
@@ -57,9 +35,6 @@ def get_expiring_recommends(
         recommend_type: Type of the recommends to include. This should either be
             "REGULAR", "LIMITED_USE", or `None`. If `None` then all recommend types will
             be included.
-
-    Raises:
-        ValueError: If unknown data is encountered.
 
     Returns:
         List of recommends matching the filter criteria.
@@ -98,34 +73,51 @@ def get_expiring_recommends(
     return expiring
 
 
-def get_sacrament_meeting_attendance(
-    lcr: LcrSession, year: int = 0
-) -> list[SacramentAttendance]:
-    url = ChurchUrl("lcr", "api/sacrament-attendance/unit/{unit}/years/{year}?lang=eng")
+def get_not_set_apart(lcr: LcrSession) -> list[CallingStatus]:
+    """
+    Get a list of people who have not been set apart.
 
-    if year == 0:
-        now = arrow.now()
-        year = now.year
+    Args:
+        lcr: A previously constructed LcrSession object
 
-    attendance_data = lcr.get_json(url, year=year)
+    Returns:
+        List of people not set apart.
+    """
+    url = ChurchUrl(
+        "lcr", "api/report/members-with-callings?lang=eng&unitNumber={unit}"
+    )
+    members_with_callings = lcr.get_json(url)
 
-    attendance = []
-    for entry in attendance_data:
-        month = entry["month"]
-        for week in entry["weeks"]:
-            if week["future"]:
-                continue
-            day = week["day"]
-            the_date = f"{year}-{month:02d}-{day:02d}"
-            count = week.get("value", 0)
-            attendance.append(SacramentAttendance(the_date, count))
-
-    return attendance
+    not_set_apart = []
+    for member in members_with_callings:
+        # Only ward level callings
+        if member["outOfUnit"] or member["stake"]:
+            continue
+        if member["setApart"]:
+            continue
+        sustained = arrow.get(member["sustainedDate"]).format("YYYY-MM-DD")
+        not_set_apart.append(
+            CallingStatus(
+                member["name"], member["position"], member["organization"], sustained
+            )
+        )
+    return not_set_apart
 
 
 def get_protecting_children_and_youth_training(
     lcr: LcrSession, months_future: int = 0
 ) -> list[YouthProtectionTraining]:
+    """
+    Get a list of people whose Protecting Children and Youth training is expiring.
+
+    Args:
+        lcr: A previously constructed LcrSession object
+        months_future: Number of months in the future to check for expiration. A value
+            of 0 indicates the current month only.
+
+    Returns:
+        List of expired and expiring training.
+    """
     url = ChurchUrl("lcr", "api/report/child-protection?lang=eng")
     training_report = lcr.get_json(url)
 
@@ -153,3 +145,38 @@ def get_protecting_children_and_youth_training(
         )
 
     return training_status
+
+
+def get_sacrament_meeting_attendance(
+    lcr: LcrSession, year: int = 0
+) -> list[SacramentAttendance]:
+    """
+    Get weekly sacrament meeting attendance for the specified year.
+
+    Args:
+        lcr: A previously constructed LcrSession object
+        year: Attendance year to fetch. 0 for current year.
+
+    Returns:
+        List of weekly attendance numbers.
+    """
+    url = ChurchUrl("lcr", "api/sacrament-attendance/unit/{unit}/years/{year}?lang=eng")
+
+    if year == 0:
+        now = arrow.now()
+        year = now.year
+
+    attendance_data = lcr.get_json(url, year=year)
+
+    attendance = []
+    for entry in attendance_data:
+        month = entry["month"]
+        for week in entry["weeks"]:
+            if week["future"]:
+                continue
+            day = week["day"]
+            the_date = f"{year}-{month:02d}-{day:02d}"
+            count = week.get("value", 0)
+            attendance.append(SacramentAttendance(the_date, count))
+
+    return attendance

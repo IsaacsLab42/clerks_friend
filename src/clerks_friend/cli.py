@@ -60,6 +60,16 @@ def value_or_env(
 
 @contextmanager
 def smart_open(filename: str | None = None) -> Generator[TextIO, None, None]:
+    """
+    Open the specified file, or stdout, for writing.
+
+    Args:
+        filename: File to open for write, or the special value '-' or None to write to
+            the console (stdout).
+
+    Yields:
+        File object opened for writing.
+    """
     if filename is not None and filename != "-":
         fp = open(filename, "wt")
     else:
@@ -104,7 +114,7 @@ def run_reports() -> int:
         "--output",
         metavar="MARKDOWN_OUTPUT",
         type=Path,
-        help="output file for markdown report",
+        help="output file for markdown report. Defaults to stdout.",
     )
 
     args = parser.parse_args()
@@ -123,7 +133,7 @@ def run_reports() -> int:
     now_str = now.format("YYYY-MM-DD")
     with smart_open(args.output) as fp:
         fp.write("# " + yml_data["title"] + "\n")
-        fp.write(f"Report run on: {now_str}")
+        fp.write(f"Report run on: {now_str}\n")
         fp.write("\n")
         for report in yml_data["reports"]:
             fn_name = "get_" + report["name"]
@@ -131,8 +141,8 @@ def run_reports() -> int:
             fn_args = report.get("parameters", {})
             data = fn(lcr, **fn_args)
             markdown_data = dataclass_list_to_table(data)
-            fp.write("# " + report["heading"])
-            fp.write(markdown_data)
+            fp.write("## " + report["heading"] + "\n")
+            fp.write(f"{markdown_data}\n")
             fp.write("\n")
 
     return 0
