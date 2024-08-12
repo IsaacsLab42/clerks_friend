@@ -105,3 +105,18 @@ This script uses the [lcr_session](https://github.com/IsaacsLab42/lcr_session) l
 to provide authentication. This library can also cache sessions, so that
 re-authentication is not necessary if several reports need to be run in a row. For this
 use the `--cookie-file` option. Church sessions are typically valid for one hour.
+
+
+## Example
+
+For example, save the above YAML sample as `report.yaml`. Create a `.env` file with your
+LCR credentials, then run the following:
+
+```bash
+$ clerks_friend ./report.yaml -c cookies.txt -o report.md
+```
+
+A `report.md` file would be output with the results. This could then be copied and
+pasted into a Google Document, which would render the markdown properly. Note that
+markdown support must be enabled for the document, and you must select the "Paste from
+markdown" option.
