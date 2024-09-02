@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clerks-friend"
-version = "1.0.0"
+version = "1.0.1"
 description = "Useful reports for Ward Clerk's of The Church of Jesus Christ of Latter-Day Saints"
 authors = ["Isaac Wagner <14634+IsaacsLab42@users.noreply.github.com>"]
 license = "MIT"
