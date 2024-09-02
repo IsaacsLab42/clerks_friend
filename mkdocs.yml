@@ -1,0 +1,58 @@
+---
+site_name: Clerks Friend
+site_url: https://clerks-friend.readthedocs.io/
+repo_url: https://github.com/IsaacsLab42/clerks_friend
+copyright: Copyright (c) 2024 by Isaac Wagner
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+watch:
+  - src
+
+markdown_extensions:
+  - extra
+  - smarty
+  - toc
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - section-index
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: google
+            heading_level: 1
+            show_if_no_docstring: false
+            show_bases: true
+            show_source: true
+            # show_root_heading: false
+            # show_root_members_full_path: true
+            # show_object_full_path: true
+            # group_by_category: false
+            # show_category_heading: true
+            merge_init_into_class: true
+
+nav:
+  - Home: index.md
+  - License: license.md
