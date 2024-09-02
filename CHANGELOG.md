@@ -9,16 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 ### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [1.0.1] - 2024-09-02
+
+### Added
+- Added basic documentation
+
+### Changed
 
 - Changed dependabot execution frequency to once per month
 - Change the PyPI trove classifier to "Development Status :: 5 - Production/Stable"
 - Updated dependency versions
-
-### Deprecated
-### Removed
-### Fixed
-
-### Security
 
 ## [1.0.0] - 2024-08-11
 
