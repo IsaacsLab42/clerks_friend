@@ -52,6 +52,9 @@ def get_expiring_recommends(
     expiring = []
     for entry in recommend_report["reportData"]:
 
+        if entry["recommendReportLine"]["expirationDate"] is None:
+            continue
+
         exp_date = arrow.get(entry["recommendReportLine"]["expirationDate"])
         if exp_date < range_start or exp_date > range_end:
             continue
