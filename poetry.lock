@@ -461,13 +461,13 @@ i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "lcr-session"
-version = "1.0.2"
+version = "1.0.3"
 description = "Session authentication to the Church of Jesus Christ of Latter Day Saints LCR System"
 optional = false
 python-versions = "<4.0,>=3.10"
 files = [
-    {file = "lcr_session-1.0.2-py3-none-any.whl", hash = "sha256:b689fc2caaefed498dc1185066b136db7df32af6e8a7ad6664ca6f45fa5a684d"},
-    {file = "lcr_session-1.0.2.tar.gz", hash = "sha256:973d1184276822ccd43452a3c26edcb6085660afa0c5228838ed4289149c4921"},
+    {file = "lcr_session-1.0.3-py3-none-any.whl", hash = "sha256:20d6df538dc91a0caff49048cb31496af2f12b7e6f4ce00ea5ad6155b4139451"},
+    {file = "lcr_session-1.0.3.tar.gz", hash = "sha256:17e3769017471ea0650ff9f860b1464876c6d29a63829e4d8618bce5a0faea27"},
 ]
 
 [package.dependencies]
