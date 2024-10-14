@@ -1,5 +1,28 @@
 # Clerks Friend
 
+<p align="center">
+    <a href="https://clerks-friend.readthedocs.io/en/stable/">
+        <img src="https://img.shields.io/readthedocs/clerks-friend"/>
+    </a>
+    <a href="https://pypi.org/project/clerks-friend/">
+        <img src="https://img.shields.io/pypi/v/clerks-friend"/>
+    </a>
+    <a href="https://pypi.org/project/clerks-friend/">
+        <img src="https://img.shields.io/pypi/wheel/clerks-friend"/>
+    </a>
+    <a href="https://pypi.org/project/clerks-friend/">
+        <img src="https://img.shields.io/pypi/pyversions/clerks-friend"/>
+    </a>
+    <a href="https://github.com/IsaacsLab42/clerks_friend/">
+        <img src="https://img.shields.io/github/license/IsaacsLab42/clerks_friend"/>
+    </a>
+    <a href="https://black.readthedocs.io/en/stable/">
+        <img src="https://img.shields.io/badge/code_style-black-black"/>
+    </a>
+</p>
+
+---
+
 Useful reports for Ward Clerk's of The Church of Jesus Christ of Latter-Day Saints. The
 included script `clerks_friend` can run several useful reports and produce Markdown
 style output. This output could be used by various programs to create HTML or PDF
