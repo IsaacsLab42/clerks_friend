@@ -3,9 +3,8 @@ import sys
 from argparse import ArgumentParser
 from contextlib import contextmanager
 from getpass import getpass
-from io import TextIOWrapper
 from pathlib import Path
-from typing import Any, Generator, TextIO
+from typing import Generator, TextIO
 
 import arrow
 from dotenv import load_dotenv
@@ -139,8 +138,9 @@ def run_reports() -> int:
             fn_name = "get_" + report["name"]
             fn = getattr(reports, fn_name)
             fn_args = report.get("parameters", {})
+            fields = report.get("fields", None)
             data = fn(lcr, **fn_args)
-            markdown_data = dataclass_list_to_table(data)
+            markdown_data = dataclass_list_to_table(data, fields=fields)
             fp.write("## " + report["heading"] + "\n")
             fp.write(f"{markdown_data}\n")
             fp.write("\n")

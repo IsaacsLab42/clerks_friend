@@ -3,6 +3,7 @@ __all__ = [
     "get_not_set_apart",
     "get_protecting_children_and_youth_training",
     "get_sacrament_meeting_attendance",
+    "get_members_moved_out",
 ]
 
 import arrow
@@ -10,6 +11,7 @@ from lcr_session import ChurchUrl, LcrSession
 
 from .types import (
     CallingStatus,
+    MovedOut,
     RecommendStatus,
     SacramentAttendance,
     YouthProtectionTraining,
@@ -163,7 +165,7 @@ def get_sacrament_meeting_attendance(
     Returns:
         List of weekly attendance numbers.
     """
-    url = ChurchUrl("lcr", "api/sacrament-attendance/unit/{unit}/years/{year}?lang=eng")
+    url = ChurchUrl("lcr", "api/sacrament-attendance/unit/{unit}/years/{year}")
 
     if year == 0:
         now = arrow.now()
@@ -183,3 +185,42 @@ def get_sacrament_meeting_attendance(
             attendance.append(SacramentAttendance(the_date, count))
 
     return attendance
+
+
+def get_members_moved_out(lcr: LcrSession, months: int = 1) -> list[MovedOut]:
+    """
+    Get the list of members moved out.
+
+    Args:
+        lcr: A previously constructed LcrSession object
+        months: Number of months worth of data to fetch
+
+    Returns:
+        List of members moved out
+    """
+    url = ChurchUrl("lcr", "api/umlu/report/members-moved-out/unit/{unit}/{months}")
+
+    data = lcr.get_json(url, months=months)
+    moved = []
+    for entry in data:
+        name = entry["name"]
+        birth_date = entry["birthDate"]
+        move_date = entry["moveDate"]
+        prior_unit = entry["priorUnit"]
+        next_unit_name = entry["nextUnitName"]
+        next_unit_number = entry["nextUnitNumber"]
+        address_unknown = entry["addressUnknown"]
+        deceased = entry["deceased"]
+        moved.append(
+            MovedOut(
+                name,
+                birth_date,
+                move_date,
+                prior_unit,
+                next_unit_name,
+                next_unit_number,
+                address_unknown,
+                deceased,
+            )
+        )
+    return moved

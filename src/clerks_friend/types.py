@@ -1,5 +1,6 @@
 __all__ = [
     "CallingStatus",
+    "MovedOut",
     "RecommendStatus",
     "SacramentAttendance",
     "YouthProtectionTraining",
@@ -14,6 +15,18 @@ class CallingStatus:
     position: str
     organization: str
     sustained: str
+
+
+@dataclass
+class MovedOut:
+    name: str
+    birth_date: str
+    move_date: str
+    prior_unit: str
+    next_unit_name: str
+    next_unit_number: int
+    address_Unknown: bool
+    deceased: bool
 
 
 @dataclass
