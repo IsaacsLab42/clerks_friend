@@ -1,6 +1,5 @@
 # Clerks Friend
 
-
 <p>
     <a href="https://clerks-friend.readthedocs.io/en/stable/">
         <img src="https://img.shields.io/readthedocs/clerks-friend"/>

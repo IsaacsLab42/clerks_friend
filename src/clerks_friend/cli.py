@@ -72,7 +72,7 @@ def smart_open(filename: str | None = None) -> Generator[TextIO, None, None]:
     if filename is not None and filename != "-":
         fp = open(filename, "wt")
     else:
-        fp = sys.stdout
+        fp = sys.stdout  # type: ignore
 
     try:
         yield fp
