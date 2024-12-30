@@ -112,8 +112,10 @@ reports:
 
 The currently valid report types are:
 
-* not_set_apart
 * expiring_recommends
+* members_moved_in
+* members_moved_out
+* not_set_apart
 * protecting_children_and_youth_training
 * sacrament_meeting_attendance
 

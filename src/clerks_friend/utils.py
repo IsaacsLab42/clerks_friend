@@ -21,7 +21,7 @@ def dataclass_list_to_table(
     # The table header will come from the first item in the list. We'll also only do
     # a quick check to make sure this item is a dataclass instance.
     if len(dataclass_list) == 0:
-        raise Exception("Invalid list size")
+        return ""
     if not is_dataclass_instance(dataclass_list[0]):
         raise TypeError("Unsupported data type")
 

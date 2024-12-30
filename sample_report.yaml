@@ -2,15 +2,49 @@
 title: Celestial Ward Clerical Report
 
 reports:
+  - name: members_moved_in
+    heading: Members Moved In
+    parameters:
+      months: 1
+    fields:
+      - name
+      - age
+      - move_date
+      - prior_unit_name
+      - address
+
+  - name: members_moved_out
+    heading: Members Moved Out
+    parameters:
+      months: 1
+    fields:
+      - name
+      - move_date
+      - next_unit_name
+      - next_unit_number
+
   - name: not_set_apart
     heading: Not Set Apart
 
   - name: expiring_recommends
-    heading: "Expiring/Expired Temple Recommends"
+    heading: "Youth Temple Recommends"
+    parameters:
+      months_past: -3
+      months_future: 1
+      recommend_type: LIMITED_USE
+    fields:
+      - name
+      - expiration
+
+  - name: expiring_recommends
+    heading: "Adult Temple Recommends"
     parameters:
       months_past: -3
       months_future: 1
       recommend_type: REGULAR
+    fields:
+      - name
+      - expiration
 
   - name: protecting_children_and_youth_training
     heading: Protecting Children and Youth Training

@@ -18,6 +18,17 @@ class CallingStatus:
 
 
 @dataclass
+class MovedIn:
+    name: str
+    age: int
+    birth_date: str
+    move_date: str
+    prior_unit_name: str
+    prior_unit_number: int
+    address: str
+
+
+@dataclass
 class MovedOut:
     name: str
     birth_date: str
@@ -25,7 +36,7 @@ class MovedOut:
     prior_unit: str
     next_unit_name: str
     next_unit_number: int
-    address_Unknown: bool
+    address_unknown: bool
     deceased: bool
 
 

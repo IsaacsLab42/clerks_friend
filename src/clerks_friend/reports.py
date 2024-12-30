@@ -11,6 +11,7 @@ from lcr_session import ChurchUrl, LcrSession
 
 from .types import (
     CallingStatus,
+    MovedIn,
     MovedOut,
     RecommendStatus,
     SacramentAttendance,
@@ -221,6 +222,43 @@ def get_members_moved_out(lcr: LcrSession, months: int = 1) -> list[MovedOut]:
                 next_unit_number,
                 address_unknown,
                 deceased,
+            )
+        )
+    return moved
+
+
+def get_members_moved_in(lcr: LcrSession, months: int = 1) -> list[MovedIn]:
+    """
+    Get the list of members moved in.
+
+    Args:
+        lcr: A previously constructed LcrSession object
+        months: Number of months worth of data to fetch
+
+    Returns:
+        List of members moved in
+    """
+    url = ChurchUrl("lcr", "api/report/members-moved-in/unit/{unit}/{months}")
+
+    data = lcr.get_json(url, months=months)
+    moved = []
+    for entry in data:
+        name = entry["name"]
+        age = entry["age"]
+        birth_date = entry["birthdate"]
+        move_date = entry["moveDate"]
+        prior_unit_name = entry["priorUnitName"]
+        prior_unit_number = entry["priorUnitNumber"]
+        address = entry["textAddress"]
+        moved.append(
+            MovedIn(
+                name=name,
+                age=age,
+                birth_date=birth_date,
+                move_date=move_date,
+                prior_unit_name=prior_unit_name,
+                prior_unit_number=prior_unit_number,
+                address=address,
             )
         )
     return moved

@@ -8,14 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Members Moved Out report
-- Ability to specify the fields to keep in the output table
-
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [1.0.3] - 2024-12-30
+
+### Added
+- Members Moved Out report
+- Members Moved In report
+- Ability to specify the fields to keep in the output table
 
 ## [1.0.2] - 2024-09-23
 
