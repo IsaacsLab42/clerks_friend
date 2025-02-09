@@ -63,3 +63,13 @@ class YouthProtectionTraining:
     position: str
     organization: str
     expiration: str
+
+
+@dataclass
+class Member:
+    name: str
+    gender: str
+    age: int
+    birth_date: str
+    phone_number: str
+    email: str
