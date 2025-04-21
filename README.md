@@ -23,11 +23,19 @@
 
 ---
 
+## Introduction
+
 Useful reports for Ward Clerk's of The Church of Jesus Christ of Latter-Day Saints. The
 included script `clerks_friend` can run several useful reports and produce Markdown
 style output. This output could be used by various programs to create HTML or PDF
 output. Or, the way I use it, is to paste the markdown into Google Docs. They have a
 feature where markdown can be pasted into a Google Doc and it will render the output.
+
+## Installation
+
+```bash
+pip install clerks-friend
+```
 
 ## Command Line Script
 
