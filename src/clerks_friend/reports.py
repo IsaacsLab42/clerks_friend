@@ -13,6 +13,7 @@ from lcr_session import ChurchUrl, LcrSession
 
 from .types import (
     CallingStatus,
+    Family,
     Member,
     MovedIn,
     MovedOut,
@@ -294,3 +295,34 @@ def get_members_list(lcr: LcrSession) -> list[Member]:
         )
 
     return members
+
+
+def get_families_list(lcr: LcrSession) -> list[Family]:
+    """
+    Get the list of families in the ward.
+
+    Args:
+        lcr: A previously constructed LcrSession object
+
+    Returns:
+        List of families
+    """
+    url = ChurchUrl("lcr", "api/umlu/report/member-list?unitNumber={unit}")
+
+    data = lcr.get_json(url)
+    families: list[Family] = []
+    for entry in data:
+        if not entry["isAdult"]:
+            continue
+        if not entry["isHead"]:
+            continue
+        families.append(
+            Family(
+                name=entry["householdNameDirectoryLocal"],
+                address=", ".join(entry["address"]["addressLines"]),
+                phone_number=entry["phoneNumber"],
+                email=entry["email"],
+            )
+        )
+
+    return families

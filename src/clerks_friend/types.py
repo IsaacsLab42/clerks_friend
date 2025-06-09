@@ -73,3 +73,11 @@ class Member:
     birth_date: str
     phone_number: str
     email: str
+
+
+@dataclass
+class Family:
+    name: str
+    address: str
+    phone_number: str
+    email: str
