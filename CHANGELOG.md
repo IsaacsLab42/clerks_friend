@@ -8,17 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
-- Added basic member list
-
 ### Changed
-
-- Upgraded pyproject.toml to be compatible with Poetry v2
-
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [1.1.0] - 2025-07-12
+
+### Added
+
+- Added basic member list
+- Added YSA list
+
+### Changed
+
+- Upgraded pyproject.toml to be compatible with Poetry v2
 
 ## [1.0.3] - 2024-12-30
 
