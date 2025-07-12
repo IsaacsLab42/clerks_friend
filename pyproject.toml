@@ -1,6 +1,6 @@
 [project]
 name = "clerks-friend"
-version = "1.0.3"
+version = "1.1.0"
 description = "Useful reports for Ward Clerk's of The Church of Jesus Christ of Latter-Day Saints"
 authors = [
     { name = "Isaac Wagner", email = "14634+IsaacsLab42@users.noreply.github.com" },
