@@ -291,6 +291,7 @@ def get_members_list(lcr: LcrSession) -> list[Member]:
                 birth_date=entry["birth"]["date"]["display"],
                 phone_number=entry["phoneNumber"],
                 email=entry["email"],
+                address=", ".join(entry["address"]["addressLines"]),
             )
         )
 
@@ -326,3 +327,35 @@ def get_families_list(lcr: LcrSession) -> list[Family]:
         )
 
     return families
+
+
+def get_ysa_members_list(lcr: LcrSession) -> list[Member]:
+    """
+    Get the list of Young Single Adults in the ward.
+
+    Args:
+        lcr: A previously constructed LcrSession object
+
+    Returns:
+        List of Young Single Adults
+    """
+    url = ChurchUrl("lcr", "api/umlu/report/member-list?unitNumber={unit}")
+
+    data = lcr.get_json(url)
+    members: list[Member] = []
+    for entry in data:
+        if not entry["isYoungSingleAdult"]:
+            continue
+        members.append(
+            Member(
+                name=entry["nameListPreferredLocal"],
+                gender=entry["sex"],
+                age=entry["age"],
+                birth_date=entry["birth"]["date"]["display"],
+                phone_number=entry["phoneNumber"],
+                email=entry["email"],
+                address=", ".join(entry["address"]["addressLines"]),
+            )
+        )
+
+    return members

@@ -1,5 +1,8 @@
 __all__ = [
     "CallingStatus",
+    "MovedIn",
+    "Member",
+    "Family",
     "MovedOut",
     "RecommendStatus",
     "SacramentAttendance",
@@ -73,6 +76,7 @@ class Member:
     birth_date: str
     phone_number: str
     email: str
+    address: str
 
 
 @dataclass
