@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 
+## [1.1.1] - 2025-07-12
+
+### Fixed
+
+- Fixed Python version specifier in the pyproject.toml file.
+
 ## [1.1.0] - 2025-07-12
 
 ### Added
