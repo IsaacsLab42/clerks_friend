@@ -11,7 +11,7 @@ requires-python = ">=3.10,<4.0"
 keywords = ["lcr", "churchofjesuschrist"]
 dynamic = ["classifiers"]
 dependencies = [
-    "lcr-session (>=1.1.0,<2.0.0)",
+    "lcr-session (>=1.2.0,<2.0.0)",
     "requests (>=2.32.3,<3.0.0)",
     "arrow (>=1.3.0,<2.0.0)",
     "prettytable (>=3.10.2,<4.0.0)",
